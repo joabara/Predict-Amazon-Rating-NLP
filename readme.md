@@ -1222,7 +1222,7 @@ mk6 = select_best_model_score(t)
 
 ## Conclusion
 
-It seems that the SGDC models running on truncated SVD data are better at predicting customer rating based on the text found in the review. One of the things it seems to do very well is rate products accurately on overall positive or negative. It classifies the majority of reviews in 1,2 star or 4,5 stars. It does have a little trouble with more nuanced reviews at 3 stars. Three stars can often mean there are some good or bad parts of a review so the model likely gets confused with those nuances.
+It seems that the original word data frame is better at predicting customer rating than with truncated SVD. One of the things it seems to do very well is rate products accurately on overall positive or negative. It classifies the majority of reviews in 1,2 star or 4,5 stars. It does have a little trouble with more nuanced reviews at 3 stars. Three stars can often mean there are some good or bad parts of a review so the model likely gets confused with those nuances. One of the benefits of truncated SVD was, while not as accurate as the original word dataset, it ran a lot faster. If we were to sclae this model and dataset, we would likely want to use the truncated SVD data/models since they would be much faster at training and predicting.
 
 In conclusion, we would want to export the SGDC models to help laptop / reviewing companies. Since they run on reduced dimensionality, they return better results and in a shorter timeframe as well. In the next steps below I will highlight how we can implement this model into production to drive business value.
 
