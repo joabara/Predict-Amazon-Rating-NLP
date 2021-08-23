@@ -1077,7 +1077,7 @@ We are going to build two models for 1) exact star rating and 2) if ratings are 
 
 ### Predicting Star Ratings
 
-
+#### Original Word Data
 ```python
 mk1 = select_best_model_score(words_df)
 ```
@@ -1098,7 +1098,7 @@ mk1 = select_best_model_score(words_df)
     
 
 
-
+#### Truncated SVD
 ```python
 mk2 = select_best_model_score(t)
 ```
@@ -1127,7 +1127,7 @@ t['Rating'] = t['Rating'].apply(lambda x: 1 if x > 2 else 0)
 words_df['Rating'] = words_df['Rating'].apply(lambda x: 1 if x > 2 else 0)
 ```
 
-
+#### Original Word Data
 ```python
 mk3 = select_best_model_score(words_df)
 ```
@@ -1147,8 +1147,7 @@ mk3 = select_best_model_score(words_df)
 ![png](output_29_1.png)
     
 
-
-
+#### Truncated SVD
 ```python
 mk4 = select_best_model_score(t)
 ```
@@ -1179,7 +1178,7 @@ t['Rating'] = t['Rating'].apply(lambda x: 1 if x == 1 else 0)
 words_df['Rating'] = words_df['Rating'].apply(lambda x: 1 if x == 1 else 0)
 ```
 
-
+#### Original Word Data
 ```python
 mk5 = select_best_model_score(words_df)
 ```
@@ -1200,7 +1199,7 @@ mk5 = select_best_model_score(words_df)
     
 
 
-
+#### Truncated SVD
 ```python
 mk6 = select_best_model_score(t)
 ```
