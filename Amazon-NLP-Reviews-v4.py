@@ -3,11 +3,6 @@
 
 # # NLP on Amazon Laptop Reviews
 # 
-# ### MSCA 31008 - Summer 2021
-# * Alessandro Joabar
-# * Adam Schuller
-# * Bogdan Constantinescu
-# * Bryan E Duff
 # 
 # ## Executive Summary
 # 
@@ -334,24 +329,3 @@ mk5 = select_best_model_score(words_df)
 
 
 mk6 = select_best_model_score(t)
-
-
-# ## Conclusion
-# 
-# It seems that the SGDC models running on truncated SVD data are better at predicting customer rating based on the text found in the review. One of the things it seems to do very well is rate products accurately on overall positive or negative. It classifies the majority of reviews in 1,2 star or 4,5 stars. It does have a little trouble with more nuanced reviews at 3 stars. Three stars can often mean there are some good or bad parts of a review so the model likely gets confused with those nuances.
-# 
-# In conclusion, we would want to export the SGDC models to help laptop / reviewing companies. Since they run on reduced dimensionality, they return better results and in a shorter timeframe as well. In the next steps below I will highlight how we can implement this model into production to drive business value.
-
-# ## Next Steps & Business Implementation
-# 
-# There are two key improvments we will make to improve our model's effectiveness for enterprise level servicing.
-# 
-# Firstly, we will expand our Amazon API subscription / develop web scraping to increase a) the number of API calls for products we can look at and b) the number of reviews we can pull per product. In our implementation above, we used ~ 400 calls and we're only getting a depth of 10 reviews. We would like to remove these limits to improve review volume.
-# 
-# As for the implementation, there are three key steps.
-# 
-# First, the model must be stored and run on an Azure/AWS server. This is important because it allows for secure and scalable storage and performance for our model. We would also be able to create a load balancer for security and availability.
-# 
-# Secondly, we must develop an API that can 1) receive reviews data from clients, 2) store client subscription keys and 3) send back predictive outputs in a timely manner. 
-# 
-# Lastly, we can monetize this API by publishing it to RapidAPI and selling tiered subscriptions. This way, we can have a consistent revenue stream to upkeep to server costs. Due to customer likely to be larger firms, we can charge a premium for unlimited use at a high markup. This would allow us to have a high revenue stream and scale the server instance and model to accomodate demand.
