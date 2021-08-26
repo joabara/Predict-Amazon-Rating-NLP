@@ -1,10 +1,16 @@
 # NLP on Amazon Laptop Reviews
 
+### MSCA 31008 - Summer 2021
+* Alessandro Joabar
+* Adam Schuller
+* Bogdan Constantinescu
+* Bryan E Duff
+
 ## Executive Summary
 
-* We can predict exactly how many stars a customer will rate a laptop based on their review text with an accuracy of 76%
+* We can predict exactly how many stars a customer will rate a laptop based on their review text with an accuracy of 73%
 
-* We can predict whether or not a product will have a positive rating (3+ stars) with an accuracy of 92%
+* We can predict whether or not a product will have a positive rating (3+ stars) with an accuracy of 91%
 * We can predict whether or not a product will have a negative rating (1-star) with an accuracy of 91%
 
 
@@ -12,6 +18,7 @@
 We would like to leverage Amazon customer review and rating data to understand if we can accurately predict:
 * The number of stars a customer rates a laptop based on the words they use in their review.
 * If a review will come in with 3+ stars based on the words used in the review.
+* If a review will come in with a 1-star review.
 
 
 ## Data
@@ -40,6 +47,19 @@ reviews.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -99,6 +119,19 @@ top.sort_values(by='Rating', ascending=False).head(10)
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -241,6 +274,19 @@ words_df.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -432,6 +478,19 @@ words_df.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -620,6 +679,11 @@ ax
 
 
 
+    <AxesSubplot:title={'center':'Fraction of Explained Variance'}, xlabel='Dimension #', ylabel='Explained Variance Ratio'>
+
+
+
+
     
 ![png](output_14_1.png)
     
@@ -641,7 +705,7 @@ print("Explained Variance: " + str(ev))
 ```
 
     Optimal N Components: 777
-    Explained Variance: 0.8499879409279631
+    Explained Variance: 0.8499886865896039
 
 
 
@@ -676,6 +740,19 @@ t.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -717,15 +794,15 @@ t.head()
       <td>-0.030252</td>
       <td>0.009522</td>
       <td>...</td>
-      <td>0.007673</td>
-      <td>0.003688</td>
-      <td>-0.001669</td>
-      <td>0.003590</td>
-      <td>-0.008555</td>
-      <td>-0.002394</td>
-      <td>-0.002800</td>
-      <td>-0.006844</td>
-      <td>0.003533</td>
+      <td>-0.002433</td>
+      <td>-0.000077</td>
+      <td>0.002903</td>
+      <td>0.002590</td>
+      <td>0.001247</td>
+      <td>0.007072</td>
+      <td>-0.005348</td>
+      <td>0.008097</td>
+      <td>0.003810</td>
       <td>5</td>
     </tr>
     <tr>
@@ -741,15 +818,15 @@ t.head()
       <td>0.293683</td>
       <td>0.057021</td>
       <td>...</td>
-      <td>0.001103</td>
-      <td>0.000194</td>
-      <td>0.003035</td>
-      <td>0.001823</td>
-      <td>0.001609</td>
-      <td>0.005012</td>
-      <td>-0.002357</td>
-      <td>-0.004490</td>
-      <td>-0.004206</td>
+      <td>0.004859</td>
+      <td>0.004322</td>
+      <td>0.000615</td>
+      <td>-0.000247</td>
+      <td>0.002456</td>
+      <td>0.009758</td>
+      <td>-0.003198</td>
+      <td>0.005532</td>
+      <td>0.007295</td>
       <td>5</td>
     </tr>
     <tr>
@@ -765,15 +842,15 @@ t.head()
       <td>-0.035365</td>
       <td>-0.013638</td>
       <td>...</td>
-      <td>-0.009942</td>
-      <td>-0.004321</td>
-      <td>0.007673</td>
-      <td>-0.009103</td>
-      <td>-0.016213</td>
-      <td>-0.001193</td>
-      <td>0.005756</td>
-      <td>0.008287</td>
-      <td>-0.001654</td>
+      <td>0.010756</td>
+      <td>0.002341</td>
+      <td>-0.004996</td>
+      <td>0.003417</td>
+      <td>-0.003792</td>
+      <td>-0.010663</td>
+      <td>0.002681</td>
+      <td>-0.004614</td>
+      <td>-0.005348</td>
       <td>2</td>
     </tr>
     <tr>
@@ -789,15 +866,15 @@ t.head()
       <td>0.006414</td>
       <td>-0.126204</td>
       <td>...</td>
-      <td>-0.002180</td>
-      <td>-0.003568</td>
-      <td>0.012005</td>
-      <td>-0.000123</td>
-      <td>0.005475</td>
-      <td>-0.000459</td>
-      <td>-0.003666</td>
-      <td>0.002353</td>
-      <td>-0.001837</td>
+      <td>0.002511</td>
+      <td>-0.005490</td>
+      <td>-0.000845</td>
+      <td>0.001165</td>
+      <td>0.003700</td>
+      <td>-0.013581</td>
+      <td>0.009564</td>
+      <td>-0.001371</td>
+      <td>0.003528</td>
       <td>5</td>
     </tr>
     <tr>
@@ -813,15 +890,15 @@ t.head()
       <td>-0.271988</td>
       <td>-0.124903</td>
       <td>...</td>
-      <td>-0.006299</td>
-      <td>0.006519</td>
-      <td>-0.000426</td>
-      <td>0.002696</td>
-      <td>-0.011698</td>
-      <td>0.002572</td>
-      <td>0.010923</td>
-      <td>-0.007828</td>
-      <td>0.000308</td>
+      <td>0.005724</td>
+      <td>-0.015622</td>
+      <td>-0.008211</td>
+      <td>-0.005227</td>
+      <td>-0.000688</td>
+      <td>-0.001101</td>
+      <td>0.002358</td>
+      <td>0.000811</td>
+      <td>0.005989</td>
       <td>5</td>
     </tr>
   </tbody>
@@ -841,6 +918,19 @@ words_df.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1017,11 +1107,13 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
+# Helper function to run model on relevant data
 def build_models_on_train(df, model, X_train, X_test, y_train, y_test):   
     classifier = model()
     classifier.fit(X_train, y_train)
     return classifier
 
+# Our workhorse AutoML function - runs different models and prints results with great flexibility
 def select_best_model_score(df):
     # Partition data into features and labels
     feature_cols = df.columns[df.columns != 'Rating']
@@ -1030,7 +1122,7 @@ def select_best_model_score(df):
     
     # Create train and test segments
     from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.15,random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=0)
     
     models_to_run = [LogisticRegression, LinearSVC, MLPClassifier, 
                  DecisionTreeClassifier, RandomForestClassifier, GaussianNB,
@@ -1039,7 +1131,7 @@ def select_best_model_score(df):
     # Score tracking
     max_score = 0
     max_build = 0
-    max_RMSE = 999
+    max_RMSE = 999999
     
     for algo in models_to_run:
         build = build_models_on_train(df, algo, X_train, X_test, y_train, y_test)
@@ -1059,14 +1151,35 @@ def select_best_model_score(df):
     print("MAE = {:5.4f}".format(metrics.mean_absolute_error(y_test, predicted)))
     print("MSE = {:5.4f}".format(metrics.mean_squared_error(y_test, predicted)))
     print("RMSE = {:5.4f}".format(np.sqrt(metrics.mean_squared_error(y_test, predicted))))
-    print("Accuracy:",metrics.accuracy_score(y_test, predicted))
+    
+    # Results of model if binary classification
+    if len(y.unique()) < 3:
+        print("Accuracy:",metrics.accuracy_score(y_test, predicted))
+        print("Precision:",metrics.precision_score(y_test, predicted))
+        print("Recall:",metrics.recall_score(y_test, predicted))
+
+        cnf_matrix = metrics.confusion_matrix(y_test, predicted)
+        class_names=[0,1]
+        fig, ax = plt.subplots()
+        tick_marks = np.arange(len(class_names))
+        plt.xticks(tick_marks, class_names)
+        plt.yticks(tick_marks, class_names)
+        sns.heatmap(pd.DataFrame(cnf_matrix), annot=True, cmap="YlGnBu" ,fmt='g')
+        ax.xaxis.set_label_position("top")
+        plt.tight_layout()
+        plt.title('Confusion matrix', y=1.1)
+        plt.ylabel('Actual label')
+        plt.xlabel('Predicted label')
     
     output = pd.DataFrame()
     inp = pd.DataFrame()
     inp['Ratings'] = y_test
     output['Ratings'] = predicted
-    sns.distplot(inp['Ratings'])
-    sns.distplot(output['Ratings']).set_title(str(max_build) + " Test vs. Predicted")
+    
+    # Results of model if more than 2 possible classifications
+    if len(y.unique()) > 2:
+        sns.distplot(inp['Ratings'])
+        sns.distplot(output['Ratings']).set_title(str(max_build) + " Test vs. Predicted")
 
     return max_build, predicted
 ```
@@ -1077,45 +1190,47 @@ We are going to build two models for 1) exact star rating and 2) if ratings are 
 
 ### Predicting Star Ratings
 
-#### Original Word Data
+#### TF-IDF Data
+
+
 ```python
 mk1 = select_best_model_score(words_df)
 ```
 
     
     Best build model is: 
-    LinearSVC()
-    Build model score (Accuracy): 0.763681592039801
-    MAE = 0.4179
-    MSE = 0.9900
-    RMSE = 0.9950
-    Accuracy: 0.763681592039801
+    Perceptron()
+    Build model score (Accuracy): 0.7234678624813154
+    MAE = 0.4484
+    MSE = 0.9836
+    RMSE = 0.9917
 
 
 
     
-![png](output_25_1.png)
+![png](output_26_1.png)
     
 
 
 #### Truncated SVD
+
+
 ```python
 mk2 = select_best_model_score(t)
 ```
 
     
     Best build model is: 
-    SGDClassifier()
-    Build model score (Accuracy): 0.763681592039801
-    MAE = 0.4129
-    MSE = 0.9801
-    RMSE = 0.9900
-    Accuracy: 0.763681592039801
+    MLPClassifier()
+    Build model score (Accuracy): 0.6965620328849028
+    MAE = 0.5022
+    MSE = 1.1061
+    RMSE = 1.0517
 
 
 
     
-![png](output_26_1.png)
+![png](output_28_1.png)
     
 
 
@@ -1127,7 +1242,9 @@ t['Rating'] = t['Rating'].apply(lambda x: 1 if x > 2 else 0)
 words_df['Rating'] = words_df['Rating'].apply(lambda x: 1 if x > 2 else 0)
 ```
 
-#### Original Word Data
+#### TF-IDF Data
+
+
 ```python
 mk3 = select_best_model_score(words_df)
 ```
@@ -1135,36 +1252,43 @@ mk3 = select_best_model_score(words_df)
     
     Best build model is: 
     LinearSVC()
-    Build model score (Accuracy): 0.917910447761194
-    MAE = 0.0821
-    MSE = 0.0821
-    RMSE = 0.2865
-    Accuracy: 0.917910447761194
+    Build model score (Accuracy): 0.9088191330343797
+    MAE = 0.0912
+    MSE = 0.0912
+    RMSE = 0.3020
+    Accuracy: 0.9088191330343797
+    Precision: 0.9162011173184358
+    Recall: 0.968503937007874
 
 
 
     
-![png](output_29_1.png)
+![png](output_32_1.png)
     
+
 
 #### Truncated SVD
+
+
 ```python
 mk4 = select_best_model_score(t)
 ```
 
     
     Best build model is: 
-    Perceptron()
-    Build model score (Accuracy): 0.8955223880597015
-    MAE = 0.1045
-    MSE = 0.1045
-    RMSE = 0.3232
-    Accuracy: 0.8955223880597015
+    LinearSVC()
+    Build model score (Accuracy): 0.9043348281016442
+    MAE = 0.0957
+    MSE = 0.0957
+    RMSE = 0.3093
+    Accuracy: 0.9043348281016442
+    Precision: 0.9188679245283019
+    Recall: 0.9586614173228346
 
 
 
     
-![png](output_30_1.png)
+![png](output_34_1.png)
     
 
 
@@ -1178,28 +1302,34 @@ t['Rating'] = t['Rating'].apply(lambda x: 1 if x == 1 else 0)
 words_df['Rating'] = words_df['Rating'].apply(lambda x: 1 if x == 1 else 0)
 ```
 
-#### Original Word Data
+#### TF-IDF Data
+
+
 ```python
 mk5 = select_best_model_score(words_df)
 ```
 
     
     Best build model is: 
-    MLPClassifier()
-    Build model score (Accuracy): 0.9079601990049752
-    MAE = 0.0920
-    MSE = 0.0920
-    RMSE = 0.3034
-    Accuracy: 0.9079601990049752
+    SGDClassifier()
+    Build model score (Accuracy): 0.9103139013452914
+    MAE = 0.0897
+    MSE = 0.0897
+    RMSE = 0.2995
+    Accuracy: 0.9103139013452914
+    Precision: 0.8055555555555556
+    Recall: 0.6904761904761905
 
 
 
     
-![png](output_33_1.png)
+![png](output_38_1.png)
     
 
 
 #### Truncated SVD
+
+
 ```python
 mk6 = select_best_model_score(t)
 ```
@@ -1207,24 +1337,32 @@ mk6 = select_best_model_score(t)
     
     Best build model is: 
     LinearSVC()
-    Build model score (Accuracy): 0.9029850746268657
-    MAE = 0.0970
-    MSE = 0.0970
-    RMSE = 0.3115
-    Accuracy: 0.9029850746268657
+    Build model score (Accuracy): 0.9133034379671151
+    MAE = 0.0867
+    MSE = 0.0867
+    RMSE = 0.2944
+    Accuracy: 0.9133034379671151
+    Precision: 0.8469387755102041
+    Recall: 0.6587301587301587
 
 
 
     
-![png](output_34_1.png)
+![png](output_40_1.png)
     
 
 
 ## Conclusion
 
-It seems that the original word data frame is better at predicting customer rating than with truncated SVD. One of the things it seems to do very well is rate products accurately on overall positive or negative. It classifies the majority of reviews in 1,2 star or 4,5 stars. It does have a little trouble with more nuanced reviews at 3 stars. Three stars can often mean there are some good or bad parts of a review so the model likely gets confused with those nuances. One of the benefits of truncated SVD was, while not as accurate as the original word dataset, it ran a lot faster. If we were to sclae this model and dataset, we would likely want to use the truncated SVD data/models since they would be much faster at training and predicting.
+After running our automated machine learning function, we were able to understand a couple of trends.
 
-In conclusion, we would want to export the SGDC models to help laptop / reviewing companies. Since they run on reduced dimensionality, they return better results and in a shorter timeframe as well. In the next steps below I will highlight how we can implement this model into production to drive business value.
+* For exact rating classification, the best models were Perceptrons and MLPClassifiers. This makese sense they are neural network models that tend to work best with data that has high dimensionality like ours.
+
+* Linear SVC models seemed to do best overall for the rest of the modeling outputs.
+
+One further piece we would want to validate is expanding our dataset to test for overfitting. With the exception of truncated SVD, we will have more attributes than observations, so we will want to make sure we can reduce the risk of overfitting.
+
+In conclusion, we would want to export the neural network and LinSVC models to help laptop / reviewing companies. Since they run on reduced dimensionality, they return better results and in a shorter timeframe as well. In the next steps below I will highlight how we can implement this model into production to drive business value.
 
 ## Next Steps & Business Implementation
 
